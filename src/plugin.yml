@@ -1,0 +1,15 @@
+name: NetworkAPI
+version: beta_1.0
+author: EdmineCoreTeam
+main: fr.edminecoreteam.networkapi.API
+commands:
+  help:
+    description: Commande d'aide
+  aide:
+    description: Commande d'aide
+  edmine:
+    description: Commande edmine
+  hub:
+    description: Commande hub
+  lobby:
+    description: Commande lobby
