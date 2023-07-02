@@ -5,8 +5,7 @@ main: fr.edminecoreteam.networkapi.API
 commands:
   help:
     description: Commande d'aide
-  aide:
-    description: Commande d'aide
+    aliases: [aide]
   edmine:
     description: Commande edmine
   hub:

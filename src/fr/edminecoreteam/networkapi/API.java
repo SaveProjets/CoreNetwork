@@ -108,7 +108,6 @@ public class API extends JavaPlugin implements PluginMessageListener {
     private void loadCommands()
     {
         this.getCommand("help").setExecutor((CommandExecutor)new HelpCommand());
-        this.getCommand("aide").setExecutor((CommandExecutor)new HelpCommand());
 
         this.getCommand("edmine").setExecutor((CommandExecutor)new EdmineCommand());
 
