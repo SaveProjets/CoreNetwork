@@ -616,7 +616,8 @@ public class EdmineCommand implements CommandExecutor
     {
         new RankInfo(p);
         RankInfo rankInfo = new RankInfo(p);
-        if (rankInfo.getRankModule() >= 15)
+        if (rankInfo.getRankModule() >= 14)
+        //if(rankInfo.getRankModule() >= 15)
         {
             return true;
         }
