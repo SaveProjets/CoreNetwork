@@ -81,7 +81,7 @@ public class MySQL
     public void creatingTableAccount() {
         try
         {
-            PreparedStatement stm = MySQL.connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_accounts (`player_name` varchar(255) NOT NULL, `player_uuid` varchar(255), player_id int(11) AUTO_INCREMENT, `player_fragments_d_ames` int(11), `player_eclats_divins` float, `player_argent` float, `player_level` int(11), `player_xp_need_to_level_up` int(11), `player_time_of_played` varchar(255), `player_first_connection` varchar(255), `player_parrain` varchar(255), `player_finish_quetes` int(11), `player_finish_succes` int(11), `player_guild_name` varchar(255), `player_total_cosmetics` int(11), `player_total_played_partys` int(11), PRIMARY KEY (`player_id`))");
+            PreparedStatement stm = MySQL.connection.prepareStatement("CREATE TABLE IF NOT EXISTS ed_accounts (`player_id` int(11) AUTO_INCREMENT, `player_name` varchar(255) NOT NULL, `player_uuid` varchar(255), `player_fragments_d_ames` int(11), `player_eclats_divins` float, `player_argent` float, `player_level` int(11), `player_xp_need_to_level_up` int(11), `player_time_of_played` varchar(255), `player_first_connection` varchar(255), `player_parrain` varchar(255), `player_finish_quetes` int(11), `player_finish_succes` int(11), `player_guild_name` varchar(255), `player_total_cosmetics` int(11), `player_total_played_partys` int(11), PRIMARY KEY (`player_id`))");
             stm.execute();
             stm.close();
             System.out.println("ED-NETWORK API");

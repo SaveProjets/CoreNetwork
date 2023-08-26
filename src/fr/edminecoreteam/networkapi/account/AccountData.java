@@ -30,7 +30,7 @@ public class AccountData
                 String date = sdf.format(resultdate);
                 PreparedStatement preparedStatement = MySQL.getConnection().prepareStatement("INSERT INTO ed_accounts (player_name, player_uuid, player_fragments_d_ames, player_eclats_divins, player_argent, player_level, player_xp_need_to_level_up, player_time_of_played, player_first_connection, player_parrain, player_finish_quetes, player_finish_succes, player_guild_name, player_total_cosmetics, player_total_played_partys) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 preparedStatement.setString(1, p.getName()); /*player_name*/
-                preparedStatement.setString(2, p.getUniqueId().toString().replaceAll("-", "")); /*player_uuid*/
+                preparedStatement.setString(2, p.getUniqueId().toString()); /*player_uuid*/
                 preparedStatement.setFloat(3, 100.0f); /*player_fragments_d_ames*/
                 preparedStatement.setFloat(4, 0.0f); /*player_eclats_divins*/
                 preparedStatement.setFloat(5, 0.0f); /*player_argent*/
@@ -58,8 +58,8 @@ public class AccountData
     {
         try
         {
-            PreparedStatement preparedStatement = MySQL.getConnection().prepareStatement("SELECT player_id FROM ed_accounts WHERE player_name = ?");
-            preparedStatement.setString(1, p.getName());
+            PreparedStatement preparedStatement = MySQL.getConnection().prepareStatement("SELECT player_id FROM ed_accounts WHERE player_uuid = ?");
+            preparedStatement.setString(1, p.getUniqueId().toString());
             ResultSet rs = preparedStatement.executeQuery();
             return rs.next();
         }
@@ -77,7 +77,7 @@ public class AccountData
             try
             {
                 PreparedStatement preparedStatement = MySQL.getConnection().prepareStatement("UPDATE ed_accounts SET player_uuid = ? WHERE player_name = ?");
-                preparedStatement.setString(1, p.getUniqueId().toString().replaceAll("-", ""));
+                preparedStatement.setString(1, p.getUniqueId().toString());
                 preparedStatement.setString(2, p.getName());
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
@@ -93,8 +93,8 @@ public class AccountData
     {
         try
         {
-            PreparedStatement preparedStatement = MySQL.getConnection().prepareStatement("SELECT player_id FROM ed_accounts WHERE player_name = ?");
-            preparedStatement.setString(1, p.getName());
+            PreparedStatement preparedStatement = MySQL.getConnection().prepareStatement("SELECT player_id FROM ed_accounts WHERE player_uuid = ?");
+            preparedStatement.setString(1, p.getUniqueId().toString());
             int id = 0;
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next())

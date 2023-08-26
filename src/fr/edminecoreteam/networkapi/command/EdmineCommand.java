@@ -443,6 +443,7 @@ public class EdmineCommand implements CommandExecutor
                                     rankInfo.updateDeadLineDate(null);
                                     rankInfo.updateRankID(id);
                                     rankInfo.updateRankType("static");
+                                    rankInfo.updateRankModule(0);
                                     EdmineMessages.successMessage(player, "static", target.getName(), id, (float) 0.0);
                                 }
                                 else
@@ -528,6 +529,7 @@ public class EdmineCommand implements CommandExecutor
                                             {
                                                 rankInfo.updatePurchaseDate(purchaseDate);
                                                 rankInfo.updateDeadLineDate(deadlineDate);
+                                                rankInfo.updateRankModule(0);
                                                 rankInfo.updateRankID(id);
                                                 rankInfo.updateRankType("tempo");
                                                 return true;
