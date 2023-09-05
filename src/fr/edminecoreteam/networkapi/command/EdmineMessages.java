@@ -121,7 +121,7 @@ public class EdmineMessages
             player.sendMessage(" §7» §c§lCentre d'aide §c(Edmine-Rank):");
             player.sendMessage("");
             player.sendMessage(" §7• §fPour l'utilisation du §dtempo-rank§f,");
-            player.sendMessage(" §7  §fun §bmodule temporaire §fest un §6grade §fqui ce");
+            player.sendMessage(" §7  §fun §bmodule temporaire §fest un §6grade §fqui se");
             player.sendMessage(" §7  §edéfinie §favec une date d'échéance.");
             player.sendMessage(" §7• §fIl peut §acommuniquer §favec l'ensemble");
             player.sendMessage(" §7  §fdes §egrades §fà part les §bstatics§f car");
