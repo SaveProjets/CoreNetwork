@@ -105,8 +105,8 @@ public class EdmineMessages
             player.sendMessage(" §7» §c§lCentre d'aide §c(Edmine-Rank):");
             player.sendMessage("");
             player.sendMessage(" §7• §fPour l'utilisation du §dstatic-rank§f,");
-            player.sendMessage(" §7  §fun §bmodule static §fest un §6grade §fqui ce");
-            player.sendMessage(" §7  §edéfinie §fsans date d'échéance.");
+            player.sendMessage(" §7  §fun §bmodule static §fest un §6grade §fqui se");
+            player.sendMessage(" §7  §edéfini §fsans date d'échéance.");
             player.sendMessage(" §7• §fIl peut §acommuniquer §favec l'ensemble");
             player.sendMessage(" §7  §fdes §egrades §fà part les §btempos§f car");
             player.sendMessage(" §7  §fils possèdent leurs propres avantages.");
