@@ -49,7 +49,7 @@ public class API extends JavaPlugin implements PluginMessageListener {
      */
     @Override
     public void onEnable() {
-
+        saveDefaultConfig();
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
         MySQLConnect();
@@ -78,7 +78,7 @@ public class API extends JavaPlugin implements PluginMessageListener {
     {
         instance = this;
 
-        (this.database = new MySQL(instance, "jdbc:mysql://", "45.140.165.235", "22728-database", "22728-database", "S5bV5su4p9")).connexion();
+        (this.database = new MySQL(instance, "jdbc:mysql://", this.getConfig().getString("mysql.host"), this.getConfig().getString("mysql.database"), this.getConfig().getString("mysql.user"), this.getConfig().getString("mysql.password"))).connexion();
     }
 
     /*
