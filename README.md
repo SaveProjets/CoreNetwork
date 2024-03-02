@@ -1,2 +1,2 @@
-# NetworkAPI
-Official API of Edmine
+# CoreNetwork
+Official CoreNetwork of Edmine
