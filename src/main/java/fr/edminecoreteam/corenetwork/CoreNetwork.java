@@ -92,7 +92,6 @@ public class CoreNetwork extends JavaPlugin implements PluginMessageListener {
     {
         CoreNetwork.instance = this;
         PluginManager pm = Bukkit.getPluginManager();
-        database.creatingTableAccount();
         database.creatingTableRank();
         pm.registerEvents((Listener)new AccountJoinListener(), (Plugin)this);
         pm.registerEvents((Listener)new JoinLeaveListener(), (Plugin)this);
