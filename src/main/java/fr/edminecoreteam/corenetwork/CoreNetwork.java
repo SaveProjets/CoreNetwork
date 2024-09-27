@@ -2,6 +2,7 @@ package fr.edminecoreteam.corenetwork;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import fr.edminecoreteam.corenetwork.utils.ReceivedPluginMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
@@ -111,6 +112,11 @@ public class CoreNetwork extends JavaPlugin implements PluginMessageListener {
 
         this.getCommand("hub").setExecutor((CommandExecutor)new HubCommand());
         this.getCommand("lobby").setExecutor((CommandExecutor)new HubCommand());
+    }
+
+    private void loadPluginMessage() {
+        ReceivedPluginMessage pluginCListener = new ReceivedPluginMessage();
+        getServer().getMessenger().registerIncomingPluginChannel((Plugin) this, "rankCommande", (PluginMessageListener) pluginCListener);
     }
 
     /*
