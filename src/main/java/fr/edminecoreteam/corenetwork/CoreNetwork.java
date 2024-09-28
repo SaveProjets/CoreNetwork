@@ -105,6 +105,8 @@ public class CoreNetwork extends JavaPlugin implements PluginMessageListener {
 
         RankTask start = new RankTask(this);
         start.runTaskTimer((Plugin)this, 0L, 20L);
+
+        loadPluginMessage();
     }
 
     private void loadCommands()

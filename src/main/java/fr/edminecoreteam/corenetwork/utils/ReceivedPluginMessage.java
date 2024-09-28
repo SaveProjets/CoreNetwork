@@ -21,7 +21,6 @@ public class ReceivedPluginMessage implements PluginMessageListener {
             String playerName = in.readUTF();
             String targetName = in.readUTF();
             RankInventoryListeners.openMainInventory(Bukkit.getPlayer(playerName), Bukkit.getPlayer(targetName));
-
         }
     }
 }
