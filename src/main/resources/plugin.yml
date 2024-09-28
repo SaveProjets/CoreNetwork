@@ -12,3 +12,5 @@ commands:
     description: Commande hub
   lobby:
     description: Commande lobby
+  test:
+    description: Commande de test

@@ -2,6 +2,8 @@ package fr.edminecoreteam.corenetwork;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import fr.edminecoreteam.corenetwork.command.TestCommand;
+import fr.edminecoreteam.corenetwork.listeners.RankInventoryListeners;
 import fr.edminecoreteam.corenetwork.utils.ReceivedPluginMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
@@ -97,6 +99,7 @@ public class CoreNetwork extends JavaPlugin implements PluginMessageListener {
         pm.registerEvents((Listener)new AccountJoinListener(), (Plugin)this);
         pm.registerEvents((Listener)new JoinLeaveListener(), (Plugin)this);
         pm.registerEvents((Listener)new HubMenu(), (Plugin)this);
+        pm.registerEvents(new RankInventoryListeners(), this);
         PingServers srv = new PingServers();
         srvNumber = srv.getServerPerGroup();
 
@@ -112,6 +115,8 @@ public class CoreNetwork extends JavaPlugin implements PluginMessageListener {
 
         this.getCommand("hub").setExecutor((CommandExecutor)new HubCommand());
         this.getCommand("lobby").setExecutor((CommandExecutor)new HubCommand());
+
+        this.getCommand("test").setExecutor((CommandExecutor) new TestCommand());
     }
 
     private void loadPluginMessage() {
