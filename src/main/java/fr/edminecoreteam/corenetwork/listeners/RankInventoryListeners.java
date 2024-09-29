@@ -13,13 +13,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RankInventoryListeners implements Listener {
-
+//Cette classe nécessite probablement de l'optimisation
     public static void openMainInventory(Player p, Player target){
         Inventory mainRankInventory = Bukkit.createInventory(null, 27, "§cGestion des ranks de : §b" + target.getName());
 
@@ -54,15 +51,41 @@ public class RankInventoryListeners implements Listener {
     }
 
     public static void openPlayerRanksInventory(Player p, Player target) {
-        Inventory rankInventory = Bukkit.createInventory(null, 54, "§cGestion des ranks joueur de : §b" + target.getName());
+        Inventory rankInventory = Bukkit.createInventory(null, 54, "§cRanks joueur de : §b" + target.getName());
 
         int setItemNbr = 0;
         for (RankList rank : RankList.values()) {
-            String rankName = rank.toString();
-            String rankValue = rank.getDisplay();
+            if(rank.getRankLevel() == null){
+                String rankName = rank.toString();
+                String rankValue = rank.getDisplay();
+                ItemStack rankItem = new ItemBuilder(Material.WOOL)
+                        .setName(rankName)
+                        .setLore(rankValue)
+                        .toItemStack();
+                rankInventory.setItem(setItemNbr, rankItem);
+                setItemNbr++;
+            }
+        }
+
+        p.openInventory(rankInventory);
+
+    }
+
+    public static void openStaffRanksInventory(Player p, Player target) {
+        Inventory rankInventory = Bukkit.createInventory(null, 54, "§cRanks staff de : §b" + target.getName());
+
+        int setItemNbr = 0;
+        Set<String> uniqueRankTypes = new HashSet<>();
+        for (RankList rank : RankList.values()) {
+            if(rank.getRankLevel() != null){
+                uniqueRankTypes.add(rank.getRankTeam());
+            }
+        }
+
+        for (String rankType : uniqueRankTypes) {
             ItemStack rankItem = new ItemBuilder(Material.WOOL)
-                    .setName(rankName)
-                    .setLore(rankValue)
+                    .setName(rankType)
+                    .setLore("Afficher la liste des ranks " + rankType)
                     .toItemStack();
             rankInventory.setItem(setItemNbr, rankItem);
             setItemNbr++;
@@ -70,6 +93,23 @@ public class RankInventoryListeners implements Listener {
 
         p.openInventory(rankInventory);
 
+    }
+
+    public static void openStaffRankTypeInventory(Player p, Player target, String typeRank) {
+        Inventory rankInventory = Bukkit.createInventory(null, 54, "§cRanks staff de : §b" + target.getName());
+
+        int setItemNbr = 0;
+        for(RankList rank : RankList.values()) {
+            if(rank.getRankTeam() == typeRank){
+                ItemStack rankItem = new ItemBuilder(Material.WOOL)
+                        .setName(rank.getRankName())
+                        .toItemStack();
+
+                rankInventory.setItem(setItemNbr, rankItem);
+                setItemNbr++;
+            }
+        }
+        p.openInventory(rankInventory);
     }
 
     @EventHandler
@@ -86,8 +126,13 @@ public class RankInventoryListeners implements Listener {
                 if(it.getItemMeta().getDisplayName().equals("§eRanks Joueur")){
                     openPlayerRanksInventory(p, Bukkit.getPlayer(inv.getName().replace("§cGestion des ranks de : §b", "")));
                 }else if(it.getItemMeta().getDisplayName().equals("§aRanks Staff")){
-                    Bukkit.broadcastMessage("RANKS STAFF");
+                    openStaffRanksInventory(p, Bukkit.getPlayer(inv.getName().replace("§cGestion des ranks de : §b", "")));
                 }
+            }
+        }else if(inv.getName().contains("§cRanks staff de : §b")){
+            e.setCancelled(true);
+            if(it.getType() == Material.WOOL){
+                openStaffRankTypeInventory(p, Bukkit.getPlayer(inv.getName().replace("§cRanks staff de : §b", "")), it.getItemMeta().getDisplayName());
             }
         }
     }
